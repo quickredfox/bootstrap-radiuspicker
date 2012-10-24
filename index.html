@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Google Maps Radius Picker Component for Bootstrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+
+			.subsection{margin-left:1em}
+			footer{
+				margin:1em;
+				text-align:center;
+			}
+			pre em{color:green;}
+    </style>
+		<script type="text/javascript"
+		      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW9tqMQTv2WLBJeKOdIeVUvmB3psFctu4&sensor=true">
+		    </script>
+    <link href="./bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Google Maps Radius Picker</a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container">
+			<div class="hero-unit">
+					<div class="row">
+						<div class="span6">
+						  <h1>Google Maps Radius Picker</h1>
+							<p><small>by <a target="twitter.com" href="http://twitter.com/quickredfox">@quickredfox</a></small></p>
+						  <p>A modal map component with features enabling end users to select a radius around a particular geographical coordinate point.</p>
+						</div>
+						<div class="span4">
+							<dl>
+								<dt>Initial</dt>
+								<dd class="initial">
+									<table class="table">
+										<tr><th>Latitude</th><td class="lat">51.503226</td></tr>
+										<tr><th>Longitude</th><td class="lon">-0.127051</td></tr>										
+										<tr><th>Km radius</th><td class="rad">25</td></tr>																				
+									</table>
+								</dd>
+								<dt>Modified</dt>
+								<dd class="modified">
+									<table class="table">
+										<tr><th>Latitude</th><td class="lat">51.503226</td></tr>
+										<tr><th>Longitude</th><td class="lon">-0.127051</td></tr>										
+										<tr><th>Km radius</th><td class="rad">25</td></tr>																				
+									</table>
+								</dd>
+							</dl>
+							
+							<a href="#radiuspicker" role="button" class="btn btn-primary btn-block" data-toggle="modal">Try demo</a>
+							
+							<div id="radiuspicker" class="modal radiuspicker hide fade">
+							  <div class="modal-header">
+							    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							    <h3>Radius Picker</h3>
+							  </div>
+							  <div class="modal-body">
+							    <div class="radiuspicker-map" style="width:400px;height:400px"></div>
+							  </div>
+							</div>
+							
+						</div>
+					</div>
+			</div>
+	
+	
+				<header class="page-header">
+					<h1>Dependencies</h1>
+				</header>
+				<p>There are 3 dependencies you must handle yourself before using this component.</p>
+				<ol>
+					<li>
+						<h4><a target="jquery-source" href="http://code.jquery.com/jquery-1.8.2.min.js">jQuery</a></h4>
+						<pre>&lt;script src="http://code.jquery.com/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;</pre>
+					</li>
+					<li>
+						<h4><a target="bootstrap-installation-instructions" href="http://twitter.github.com/bootstrap/getting-started.html">Bootstrap by <del>Twitter</del> <ins>@mdo &amp; @fat</ins></a></h4>
+						<ul>
+							<li><strong>Github</strong> <a href="https://github.com/twitter/bootstrap" target="github">https://github.com/twitter/bootstrap</a></li>
+							<li><strong>CDN</strong> <a target="_blank" href="http://www.bootstrapcdn.com/">http://www.bootstrapcdn.com/</a> (I never used this)</li>
+						</ul>
+					</li>
+					<li>
+						<h4><a target ="google-docs" href="https://developers.google.com/maps/documentation/javascript/tutorial#HelloWorld">The Google Map API V3 Javascript library</a></h4>
+						<p>Configure it with your own api key and <code>sensor</code> parameter.</p>
+					</li>
+				</ol>
+				<header class="page-header">
+					<h1>Usage</h1>
+				</header>
+				<ol>
+					<li>
+						<p>Include the <code>bootstrap-radiuspicker.js</code> code into your page.</p>
+						<pre>&lt;script src="./bootstrap-radiuspicker/js/bootstrap-radiuspicker.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;</pre>
+					</li>
+					<li>
+						<p>Build a minimal subset of the <a target="bootstrap-modal-documentation" href="http://twitter.github.com/bootstrap/javascript.html#modals">bootstrap modal</a> structure.</p>
+						<ul>
+							<li>
+								<strong>The "trigger" button:</strong>
+								<p>Must point to the DOM id of the target radiuspicker modal.</p>
+								<pre>&lt;a href="<em>#radiuspicker</em>" role="button" class="btn" data-toggle="modal"&gt;radius picker&lt;/a&gt;</pre>
+							</li>
+							<li>
+								<strong>The "modal":</strong>
+								<p>The basic modal classes plus and aditional <code>.radiuspicker</code> class on the modal. The <code>.modal-body</code> should only contain an empty div with class <code>.radiuspicker-map</code> and a <code>style</code> attribute to tell Google Maps the dimensions to your map area.</p>
+								<pre>&lt;div id="<em>radiuspicker</em>" class="modal <em>radiuspicker</em> hide fade"&gt;
+  &lt;div class="modal-header"&gt;
+    &lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true"&gt;×&lt;/button&gt;
+    &lt;h3&gt;Radius Picker&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div class="modal-body"&gt;
+    <em>&lt;div class="radiuspicker-map" style="width:400px;height:400px"&gt;&lt;/div&gt;</em>
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+							</li>
+						</ul>
+					</li>
+					
+					<li>
+						<p>Initialize the component with an initial latitude, longitude and kilometre radius.</p>
+						<pre>
+$('#radiusPicker').radiusPicker( {
+	latitude: 51.503226,
+	longitude: -0.127051, 
+	km: 25
+} )</pre>
+						<p>Listen for changes and handle them how you wish (hint: populate a hidden form input)</p>
+						<pre>
+$('#radiusPicker').on('change', function( event, data ){
+	/* data ~= { latitude: 51.503226, longitude: -0.127051, km: 32.6456 } */
+});</pre>
+						<p>Optionally you can use miles and metres by replacing <code>km</code> with <code>miles</code> for miles and <code>radius</code> for metres. The change events data objcet will respect that same object structure.</p>
+					</li>
+				</ol>
+			
+    </div> <!-- /container -->
+
+		<footer>
+			This website uses <a href="http://www.maxmind.com/en/javascript">MaxMind's
+			GeoIP JavaScript Service</a>
+		</footer>
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./bootstrap/js/bootstrap.js"></script>
+		<script src="./js/bootstrap-radiuspicker.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./demo.js" type="text/javascript" charset="utf-8"></script>
+  </body>
+</html>
